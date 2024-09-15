@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Counterstep from './components/Counterstep.jsx';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [step, setStep] = useState(0);
+    const [count, setCount] = useState(0);
+
+    const incrementHandler = () => {
+        setStep(step + 1);
+    };
+
+    const decrementHandler = () => {
+        setStep(step - 1); // Corrected this line to decrement the step
+    };
+
+    const countIncrementHandler = () => {
+        setCount(count +  step); // Modified to include the step in the calculation
+    };
+
+    return (
+        <div>
+            <Counterstep 
+                step={step} 
+                count={count} 
+                countIncrementHandler={countIncrementHandler} 
+                incrementHandler={incrementHandler} 
+                decrementHandler={decrementHandler} 
+            />
+        </div>
+    );
 }
 
 export default App;
